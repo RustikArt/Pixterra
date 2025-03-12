@@ -1,12 +1,13 @@
 const gridSize = 100;
-let units = 0;
+let units = 10;
 let selectedColor = "#000000";
 let scale = 1;
 let posX = 0, posY = 0;
 let isDragging = false;
 let startX, startY;
-let moveThreshold = 5; // Distance minimale pour détecter un mouvement
-let isMoving = false; // Variable pour savoir si l'utilisateur est en mouvement
+let moveThreshold = 5;
+let isMoving = false; 
+let isPixelAllowed = true; 
 
 document.getElementById("colorPicker").addEventListener("input", (e) => {
     selectedColor = e.target.value;
@@ -16,28 +17,24 @@ function addUnit() {
     units++;
     document.getElementById("unitCount").innerText = units;
 }
-
 function placePixel(event) {
-    // Si l'utilisateur n'est pas en mouvement, on peut poser des pixels
-    if (units > 0 && event.target.classList.contains("pixel") && !isMoving) {
+    if (units > 0 && event.target.classList.contains("pixel") && isPixelAllowed) {
         event.target.style.backgroundColor = selectedColor;
         units--;
         document.getElementById("unitCount").innerText = units;
     }
 }
 
-
 function createGrid() {
     const grid = document.getElementById("grid");
     for (let i = 0; i < gridSize * gridSize; i++) {
         const pixel = document.createElement("div");
         pixel.classList.add("pixel");
-        pixel.addEventListener("click", placePixel);
+        pixel.addEventListener("click", placePixel); 
         grid.appendChild(pixel);
     }
 }
 
-// Zoom
 const gridContainer = document.getElementById("gridContainer");
 gridContainer.addEventListener("wheel", (event) => {
     event.preventDefault();
@@ -46,12 +43,11 @@ gridContainer.addEventListener("wheel", (event) => {
     updateTransform();
 });
 
-// Drag
 gridContainer.addEventListener("mousedown", (event) => {
     isDragging = true;
     startX = event.clientX - posX;
     startY = event.clientY - posY;
-    isMoving = false; // Initialement, on suppose qu'on ne bouge pas
+    isMoving = false; 
 });
 
 document.addEventListener("mousemove", (event) => {
@@ -60,7 +56,6 @@ document.addEventListener("mousemove", (event) => {
     const distX = Math.abs(event.clientX - (startX + posX));
     const distY = Math.abs(event.clientY - (startY + posY));
 
-    // Si la distance parcourue dépasse le seuil, on considère qu'on est en déplacement
     if (distX > moveThreshold || distY > moveThreshold) {
         isMoving = true;
     }
@@ -72,7 +67,11 @@ document.addEventListener("mousemove", (event) => {
 
 document.addEventListener("mouseup", () => {
     isDragging = false;
-    isMoving = false; // Le déplacement est terminé, on peut poser des pixels à nouveau
+    isPixelAllowed = false;
+
+    setTimeout(() => {
+        isPixelAllowed = true;
+    }, 300); 
 });
 
 function updateTransform() {
