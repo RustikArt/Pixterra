@@ -71,7 +71,16 @@ document.addEventListener("mouseup", () => {
 
     setTimeout(() => {
         isPixelAllowed = true;
-    }, 300); 
+    }, 300); function placePixel(event) {
+        if (units > 0 && event.target.classList.contains("pixel") && isPixelAllowed && !isDragging) {
+            event.target.style.backgroundColor = selectedColor;
+            units--;
+            document.getElementById("unitCount").innerText = units;
+        }
+    }document.addEventListener("mouseup", () => {
+        isDragging = false;
+        isPixelAllowed = true;
+    });
 });
 
 function updateTransform() {
