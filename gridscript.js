@@ -5,8 +5,8 @@ let scale = 1;
 let posX = 0, posY = 0;
 let isDragging = false;
 let startX, startY;
-let moveThreshold = 5; // Distance minimale pour considérer un mouvement (en pixels)
-let isMoving = false; // Pour savoir si l'utilisateur se déplace
+let moveThreshold = 5; // Distance minimale pour détecter un mouvement
+let isMoving = false; // Variable pour savoir si l'utilisateur est en mouvement
 
 document.getElementById("colorPicker").addEventListener("input", (e) => {
     selectedColor = e.target.value;
@@ -18,7 +18,7 @@ function addUnit() {
 }
 
 function placePixel(event) {
-    // Si l'utilisateur est en train de déplacer la grille, on ignore le clic
+    // Si l'utilisateur n'est pas en mouvement, on peut poser des pixels
     if (units > 0 && event.target.classList.contains("pixel") && !isMoving) {
         event.target.style.backgroundColor = selectedColor;
         units--;
@@ -50,7 +50,7 @@ gridContainer.addEventListener("mousedown", (event) => {
     isDragging = true;
     startX = event.clientX - posX;
     startY = event.clientY - posY;
-    isMoving = false; // Initialement on ne considère pas que l'utilisateur se déplace
+    isMoving = false; // Initialement, on suppose qu'on ne bouge pas
 });
 
 document.addEventListener("mousemove", (event) => {
@@ -59,7 +59,7 @@ document.addEventListener("mousemove", (event) => {
     const distX = Math.abs(event.clientX - (startX + posX));
     const distY = Math.abs(event.clientY - (startY + posY));
 
-    // Si la distance parcourue est supérieure au seuil, on considère que l'utilisateur se déplace
+    // Si la distance parcourue dépasse le seuil, on considère qu'on est en déplacement
     if (distX > moveThreshold || distY > moveThreshold) {
         isMoving = true;
     }
@@ -71,7 +71,7 @@ document.addEventListener("mousemove", (event) => {
 
 document.addEventListener("mouseup", () => {
     isDragging = false;
-    isMoving = false; // L'utilisateur a terminé de se déplacer
+    isMoving = false; // Le déplacement est terminé, on peut poser des pixels à nouveau
 });
 
 function updateTransform() {
