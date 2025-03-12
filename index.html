@@ -3,50 +3,565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixterra</title>
-    <link rel="stylesheet" href="gridstyles.css">
+    <title>Pixel Wars | Conquérir le monde pixel par pixel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="pixel-loader"></div>
+        </div>
+        <div class="loading-text">Chargement de Pixel Wars...</div>
+    </div>
 
-    <h1>Pixterra</h1>
-    <h2>La terre des pixels.</h2>
-    <h3>Serveur 1</h3>
-    <div class="controls">
-        <input type="color" id="colorPicker">
-        <button onclick="addUnit()">👜 SHOP</button>
-        <span>Pixels : <span id="unitCount">0</span></span>
-    </div>
-    <div class="grid-container" id="gridContainer">
-        <div id="grid" class="grid"></div>
-    </div>
-    <section>
-        <div>
-            <h3>Notre histoire...</h3>
-            <p class="textrandom">Ce projet a pour but de faire comprendre aux utilisateurs les différentes façons de voir le monde, les différents
-                exemples sociaux en fonctions du monde et de leur histoire, ainsi que les possibilités de voir le monde de plusieurs points de vue.
-            </p>
+    <header>
+        <nav class="navbar glass-effect">
+            <div class="logo">
+                <div class="logo-pixel-container">
+                    <div class="logo-pixel" style="background-color: #ff4081;"></div>
+                    <div class="logo-pixel" style="background-color: #8a2be2;"></div>
+                    <div class="logo-pixel" style="background-color: #00bcd4;"></div>
+                    <div class="logo-pixel" style="background-color: #ffeb3b;"></div>
+                </div>
+                <h1>Pixel Wars</h1>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="servers.html">
+                    <i class="fas fa-server"></i>
+                    <span>Serveurs</span>
+                </a>
+                <a href="shop.html">
+                    <i class="fas fa-store"></i>
+                    <span>Boutique</span>
+                </a>
+                <a href="leaderboard.html">
+                    <i class="fas fa-trophy"></i>
+                    <span>Classement</span>
+                </a>
+                <a href="about.html">
+                    <i class="fas fa-info-circle"></i>
+                    <span>À propos</span>
+                </a>
+            </div>
+            <div class="user-actions">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <button class="login-btn glass-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Connexion</span>
+                </button>
+                <button class="signup-btn">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Inscription</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero parallax-bg">
+            <div class="hero-overlay"></div>
+            <div class="hero-content animate__animated animate__fadeIn">
+                <h1 class="glitch-text" data-text="Conquérez le monde, pixel par pixel">Conquérez le monde, pixel par pixel</h1>
+                <p>Rejoignez des milliers de joueurs et laissez votre marque dans un univers pixelisé en constante évolution.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number counter" data-target="15764">0</span>
+                        <span class="stat-label">Joueurs actifs</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number counter" data-target="42">0</span>
+                        <span class="stat-label">Pays</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number counter" data-target="856934">0</span>
+                        <span class="stat-label">Pixels placés aujourd'hui</span>
+                    </div>
+                </div>
+                <button class="play-btn pulse-animation">
+                    <i class="fas fa-play"></i>
+                    <span>Jouer maintenant</span>
+                </button>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <div class="section-header">
+                <h2 class="section-title">Zone de jeu</h2>
+                <p class="section-subtitle">Placez vos pixels stratégiquement pour créer des œuvres d'art ou conquérir des territoires</p>
+            </div>
+
+            <div class="server-panel glass-effect">
+                <div class="server-info">
+                    <div class="server-selector">
+                        <div class="server-status">
+                            <span class="status-indicator online"></span>
+                            <h3>Serveur: <span id="current-server">Classic</span></h3>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-btn neon-border">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Changer de serveur</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" class="active" data-server="classic">
+                                    <i class="fas fa-chess-board"></i>
+                                    <span>Classic</span>
+                                    <span class="player-count">1,254 joueurs</span>
+                                </a>
+                                <a href="#" data-server="faction">
+                                    <i class="fas fa-flag"></i>
+                                    <span>Faction</span>
+                                    <span class="player-count">876 joueurs</span>
+                                </a>
+                                <a href="#" data-server="solo">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo</span>
+                                    <span class="player-count">543 joueurs</span>
+                                </a>
+                                <a href="#" data-server="infinite" class="disabled">
+                                    <i class="fas fa-infinity"></i>
+                                    <span>Infinite</span>
+                                    <span class="coming-soon">Bientôt disponible</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-counter">
+                        <div class="pixel-count">
+                            <i class="fas fa-square"></i>
+                            <span>Pixels: <span id="unitCount">10</span></span>
+                        </div>
+                        <div class="time-counter">
+                            <i class="fas fa-clock"></i>
+                            <span>Prochain pixel dans: <span id="nextPixelTime">2:35</span></span>
+                        </div>
+                        <button id="shop-btn" onclick="openShop()" class="neon-btn">
+                            <i class="fas fa-store"></i>
+                            <span>Boutique</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="color-tools">
+                    <div class="tool-section">
+                        <span class="tool-label">Palette de couleurs</span>
+                        <div class="color-palette glass-effect">
+                            <input type="color" id="colorPicker" value="#000000">
+                            <div class="preset-colors">
+                                <div class="color-option active" style="background-color: #000000;" data-color="#000000"></div>
+                                <div class="color-option" style="background-color: #FF0000;" data-color="#FF0000"></div>
+                                <div class="color-option" style="background-color: #00FF00;" data-color="#00FF00"></div>
+                                <div class="color-option" style="background-color: #0000FF;" data-color="#0000FF"></div>
+                                <div class="color-option" style="background-color: #FFFF00;" data-color="#FFFF00"></div>
+                                <div class="color-option" style="background-color: #FF00FF;" data-color="#FF00FF"></div>
+                                <div class="color-option" style="background-color: #00FFFF;" data-color="#00FFFF"></div>
+                                <div class="color-option" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+                                <button class="more-colors">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-section">
+                        <span class="tool-label">Outils</span>
+                        <div class="zoom-controls glass-effect">
+                            <button id="zoom-in" class="tool-btn" title="Zoom avant">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button id="zoom-out" class="tool-btn" title="Zoom arrière">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button id="reset-view" class="tool-btn" title="Réinitialiser la vue">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                            <button id="center-view" class="tool-btn" title="Centrer la vue">
+                                <i class="fas fa-crosshairs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-container" id="gridContainer">
+                    <div class="grid-background"></div>
+                    <div id="grid" class="grid"></div>
+                    <div class="mini-map" id="miniMap">
+                        <div class="viewport-indicator"></div>
+                    </div>
+                    <div class="coordinates" id="coordinates">X: 0, Y: 0</div>
+                    <div class="scale-indicator" id="scaleIndicator">Zoom: 100%</div>
+                </div>
+
+                <div class="action-bar">
+                    <div class="action-btn-group">
+                        <button class="action-btn" title="Capturer une image">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <button class="action-btn" title="Partager">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-btn" title="Favoris">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="action-btn-group">
+                        <button class="action-btn" title="Chat">
+                            <i class="fas fa-comments"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">1,254</span>
+                            <span class="stat-label">Joueurs en ligne</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">2,453,781</span>
+                            <span class="stat-label">Pixels placés aujourd'hui</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">5:00</span>
+                            <span class="stat-label">Prochain réapprovisionnement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="section-header">
+                <h2 class="section-title">Modes de jeu</h2>
+                <p class="section-subtitle">Des expériences uniques pour tous les types de joueurs</p>
+            </div>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Mode Faction</h3>
+                    <p>Rejoignez une équipe et conquérez le territoire pixel par pixel. Stratégie et coopération sont les clés du succès.</p>
+                    <ul class="feature-details">
+                        <li><i class="fas fa-check"></i> 4 factions en compétition</li>
+                        <li><i class="fas fa-check"></i> Territoires dynamiques</li>
+                        <li><i class="fas fa-check"></i> Bonus d'équipe</li>
+                    </ul>
+                    <a href="#" class="feature-link">En savoir plus <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card active">
+                    <div class="feature-badge">Populaire</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-chess-board"></i>
+                    </div>
+                    <h3>Mode Classic</h3>
+                    <p>L'expérience Pixel Wars originale. Collaborez avec la communauté pour créer des œuvres d'art spectaculaires.</p>
+                    <ul class="feature-details">
+                        <li><i class="fas fa-check"></i> Toile communautaire</li>
+                        <li><i class="fas fa-check"></i> Refresh toutes les 6h</li>
+                        <li><i class="fas fa-check"></i> Événements spéciaux</li>
+                    </ul>
+                    <a href="#" class="feature-link">En savoir plus <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Mode Solo</h3>
+                    <p>Créez votre propre chef-d'œuvre et défiez-vous pour créer la meilleure œuvre d'art pixelisée.</p>
+                    <ul class="feature-details">
+                        <li><i class="fas fa-check"></i> Canvas personnel</li>
+                        <li><i class="fas fa-check"></i> Outils avancés</li>
+                        <li><i class="fas fa-check"></i> Partage social</li>
+                    </ul>
+                    <a href="#" class="feature-link">En savoir plus <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="feature-card coming-soon">
+                    <div class="feature-badge">Nouveau</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Mode Infini</h3>
+                    <p>Une toile sans fin pour exprimer votre créativité sans limites ni frontières.</p>
+                    <div class="coming-soon-overlay">
+                        <span>Bientôt disponible</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="community">
+            <div class="section-header">
+                <h2 class="section-title">Communauté</h2>
+                <p class="section-subtitle">Des milliers de joueurs du monde entier</p>
+            </div>
+            
+            <div class="community-gallery">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/320" alt="Œuvre communautaire">
+                    <div class="gallery-overlay">
+                        <h4>Bataille de Pixel City</h4>
+                        <p>Créé par 1243 joueurs</p>
+                        <a href="#" class="gallery-btn">Voir en détail</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/320" alt="Œuvre communautaire">
+                    <div class="gallery-overlay">
+                        <h4>Le Grand Soleil</h4>
+                        <p>Créé par 856 joueurs</p>
+                        <a href="#" class="gallery-btn">Voir en détail</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/320" alt="Œuvre communautaire">
+                    <div class="gallery-overlay">
+                        <h4>Constellation Pixelisée</h4>
+                        <p>Créé par 2158 joueurs</p>
+                        <a href="#" class="gallery-btn">Voir en détail</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-avatar">
+                        <img src="/api/placeholder/60/60" alt="Avatar">
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"J'adore Pixel Wars ! C'est incroyable de voir comment une communauté peut créer des œuvres d'art magnifiques pixel par pixel."</p>
+                        <div class="testimonial-author">
+                            <h4>Emma L.</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-avatar">
+                        <img src="/api/placeholder/60/60" alt="Avatar">
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Le mode Faction est génial ! Mon équipe et moi avons passé des heures à essayer de conquérir le plus de territoire possible."</p>
+                        <div class="testimonial-author">
+                            <h4>Thomas M.</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-container">
+                <div class="cta-card glass-effect">
+                    <h3>Rejoignez notre communauté Discord</h3>
+                    <p>Discutez, planifiez et créez avec d'autres joueurs de Pixel Wars</p>
+                    <button class="discord-btn">
+                        <i class="fab fa-discord"></i>
+                        <span>Rejoindre Discord</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="shop-modal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close-btn" onclick="closeShop()">&times;</span>
+            <h2 class="modal-title">
+                <i class="fas fa-store"></i>
+                Boutique de Pixels
+            </h2>
+            
+            <div class="shop-tabs">
+                <button class="shop-tab active" data-tab="pixels">Pixels</button>
+                <button class="shop-tab" data-tab="premium">Premium</button>
+                <button class="shop-tab" data-tab="boosters">Boosters</button>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="pixels-tab">
+                    <div class="shop-items">
+                        <div class="shop-item">
+                            <div class="shop-item-badge free">Gratuit</div>
+                            <img src="/api/placeholder/80/80" alt="10 Pixels">
+                            <h3>10 Pixels</h3>
+                            <p>Pack de base pour débuter votre œuvre.</p>
+                            <div class="item-cooldown">Disponible toutes les 6h</div>
+                            <button class="buy-btn pulse-animation" onclick="buyPixels(10)">Obtenir gratuitement</button>
+                        </div>
+                        <div class="shop-item">
+                            <img src="/api/placeholder/80/80" alt="50 Pixels">
+                            <h3>50 Pixels</h3>
+                            <p>Pack intermédiaire pour artistes ambitieux.</p>
+                            <div class="item-price">100 points</div>
+                            <button class="buy-btn" onclick="buyPixels(50)">Acheter</button>
+                        </div>
+                        <div class="shop-item premium">
+                            <div class="shop-item-badge">Hot</div>
+                            <img src="/api/placeholder/80/80" alt="100 Pixels">
+                            <h3>100 Pixels</h3>
+                            <p>Pack premium pour vrais conquérants.</p>
+                            <div class="item-price">200 points</div>
+                            <button class="buy-btn" onclick="buyPixels(100)">Acheter</button>
+                        </div>
+                        <div class="shop-item">
+                            <img src="/api/placeholder/80/80" alt="250 Pixels">
+                            <h3>250 Pixels</h3>
+                            <p>Mega pack pour les artistes dévoués.</p>
+                            <div class="item-price">450 points</div>
+                            <button class="buy-btn" onclick="buyPixels(250)">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shop-currency">
+                <div class="currency-display">
+                    <i class="fas fa-coins"></i>
+                    <span>Vos points: <strong>500</strong></span>
+                </div>
+                <button class="currency-btn">Acheter des points</button>
+            </div>
         </div>
-    </section>
-    <section class="section">
-        <div>
-            <br>
-            <h3>Serveurs</h3>
-            <p class="paragraph">Plusieurs serveurs sont disponiblse sur Pixterra.
-            </p>
-            <input class="textrandom" type="submit" value="♾ | solo world 🌐">
-            <input class="textrandom" type="submit" value="1M | solo world 💥">
-            <input class="textrandom" type="submit" value="1M | factions 🛡️">
-            <input class="textrandom" type="submit" value="Soon... 🚀">
-            <br>
-            <br>
+    </div>
+
+    <div id="notification" class="notification">
+        <div class="notification-icon">
+            <i class="fas fa-info-circle"></i>
         </div>
-    </section>
-    <footer class="footer">
-        <br>
-        <p>© 2025 Pixterra. Tous droits réservés.</p>
-        <br>
+        <div class="notification-message">Message de notification</div>
+        <button class="notification-close">&times;</button>
+    </div>
+
+    <footer>
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#8a2be2" fill-opacity="0.5" d="M0,192L48,170.7C96,149,192,107,288,122.7C384,139,480,213,576,213.3C672,213,768,139,864,122.7C960,107,1056,149,1152,154.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <div class="logo-pixel-container">
+                        <div class="logo-pixel" style="background-color: #ff4081;"></div>
+                        <div class="logo-pixel" style="background-color: #8a2be2;"></div>
+                        <div class="logo-pixel" style="background-color: #00bcd4;"></div>
+                        <div class="logo-pixel" style="background-color: #ffeb3b;"></div>
+                    </div>
+                    <h3>Pixel Wars</h3>
+                </div>
+                <p class="footer-tagline">Conquérez le monde, pixel par pixel</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitch"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Pixel Wars</h4>
+                    <a href="#">Accueil</a>
+                    <a href="servers.html">Serveurs</a>
+                    <a href="shop.html">Boutique</a>
+                    <a href="leaderboard.html">Classement</a>
+                    <a href="about.html">À propos</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Règles du jeu</a>
+                    <a href="#">Signaler un bug</a>
+                    <a href="#">Centre d'aide</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Légal</h4>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Politique des cookies</a>
+                    <a href="#">CGV</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Restez connectés</h4>
+                    <div class="newsletter">
+                        <p>Recevez les dernières actualités et offres spéciales</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Votre email">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Pixel Wars. Tous droits réservés.</p>
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <select>
+                    <option value="fr">Français</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+        </div>
     </footer>
 
-    <script src="gridscript.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
