@@ -1,5 +1,5 @@
 const gridSize = 100;
-let units = 10;
+let units = 0;
 let selectedColor = "#000000";
 let scale = 1;
 let posX = 0, posY = 0;
@@ -25,6 +25,7 @@ function placePixel(event) {
         document.getElementById("unitCount").innerText = units;
     }
 }
+
 
 function createGrid() {
     const grid = document.getElementById("grid");
