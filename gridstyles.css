@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.grid-container {
+    overflow: hidden;
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    border: 1px solid black;
+    position: relative;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(100, 5px);
+    grid-template-rows: repeat(100, 5px);
+    gap: 1px;
+    position: absolute;
+    transform-origin: top left;
+}
+.pixel {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+.controls {
+    margin-bottom: 10px;
+}
+ 
