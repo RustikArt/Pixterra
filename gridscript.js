@@ -62,7 +62,7 @@ document.addEventListener("mouseup", () => {
 
 function updateTransform() {
     const grid = document.getElementById("grid");
-    grid.style.transform = translate(${posX}px, ${posY}px) scale(${scale});
+    grid.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
 }
 
 createGrid();
