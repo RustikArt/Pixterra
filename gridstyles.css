@@ -7,7 +7,7 @@ body {
     width: 600px;
     height: 600px;
     margin: auto;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     position: relative;
 }
 .grid {
@@ -21,10 +21,22 @@ body {
 .pixel {
     width: 5px;
     height: 5px;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: rgb(255, 255, 255);
+    border: 0.1px solid #00000033;
 }
 .controls {
     margin-bottom: 10px;
 }
- 
+.textrandom {
+    font-family: monospace;
+    font-size: 20px;
+    text-align: left;
+}
+.footer {
+    background-color: black;
+    color: white;
+}
+.section {
+background-color: blueviolet;
+color: white;
+}
