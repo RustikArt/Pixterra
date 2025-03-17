@@ -1,0 +1,152 @@
+        <section class="game-section">
+            <div class="section-header">
+                <h2 class="section-title">Zone de jeu</h2>
+                <p class="section-subtitle">Placez vos pixels stratégiquement pour créer des œuvres d'art ou conquérir des territoires</p>
+            </div>
+
+            <div class="server-panel glass-effect">
+                <div class="server-info">
+                    <div class="server-selector">
+                        <div class="server-status">
+                            <span class="status-indicator online"></span>
+                            <h3>Serveur: <span id="current-server">Classic</span></h3>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-btn neon-border">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Changer de serveur</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#" class="active" data-server="classic">
+                                    <i class="fas fa-chess-board"></i>
+                                    <span>Classic</span>
+                                    <span class="player-count">1,254 joueurs</span>
+                                </a>
+                                <a href="#" data-server="faction">
+                                    <i class="fas fa-flag"></i>
+                                    <span>Faction</span>
+                                    <span class="player-count">876 joueurs</span>
+                                </a>
+                                <a href="#" data-server="solo">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo</span>
+                                    <span class="player-count">543 joueurs</span>
+                                </a>
+                                <a href="#" data-server="infinite" class="disabled">
+                                    <i class="fas fa-infinity"></i>
+                                    <span>Infinite</span>
+                                    <span class="coming-soon">Bientôt disponible</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resource-counter">
+                        <div class="pixel-count">
+                            <i class="fas fa-square"></i>
+                            <span>Pixels: <span id="unitCount">10</span></span>
+                        </div>
+                        <div class="time-counter">
+                            <i class="fas fa-clock"></i>
+                            <span>Prochain pixel dans: <span id="nextPixelTime">2:35</span></span>
+                        </div>
+                        <button id="shop-btn" onclick="openShop()" class="neon-btn">
+                            <i class="fas fa-store"></i>
+                            <span>Boutique</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="color-tools">
+                    <div class="tool-section">
+                        <span class="tool-label">Palette de couleurs</span>
+                        <div class="color-palette glass-effect">
+                            <input type="color" id="colorPicker" value="#000000">
+                            <div class="preset-colors">
+                                <div class="color-option active" style="background-color: #000000;" data-color="#000000"></div>
+                                <div class="color-option" style="background-color: #FF0000;" data-color="#FF0000"></div>
+                                <div class="color-option" style="background-color: #00FF00;" data-color="#00FF00"></div>
+                                <div class="color-option" style="background-color: #0000FF;" data-color="#0000FF"></div>
+                                <div class="color-option" style="background-color: #FFFF00;" data-color="#FFFF00"></div>
+                                <div class="color-option" style="background-color: #FF00FF;" data-color="#FF00FF"></div>
+                                <div class="color-option" style="background-color: #00FFFF;" data-color="#00FFFF"></div>
+                                <div class="color-option" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+                                <button class="more-colors">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-section">
+                        <span class="tool-label">Outils</span>
+                        <div class="zoom-controls glass-effect">
+                            <button id="zoom-in" class="tool-btn" title="Zoom avant">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button id="zoom-out" class="tool-btn" title="Zoom arrière">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button id="reset-view" class="tool-btn" title="Réinitialiser la vue">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                            <button id="center-view" class="tool-btn" title="Centrer la vue">
+                                <i class="fas fa-crosshairs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-container" id="gridContainer">
+                    <div class="grid-background"></div>
+                    <div id="grid" class="grid"></div>
+                    <div class="mini-map" id="miniMap">
+                        <div class="viewport-indicator"></div>
+                    </div>
+                    <div class="coordinates" id="coordinates">X: 0, Y: 0</div>
+                    <div class="scale-indicator" id="scaleIndicator">Zoom: 100%</div>
+                </div>
+
+                <div class="action-bar">
+                    <div class="action-btn-group">
+                        <button class="action-btn" title="Capturer une image">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <button class="action-btn" title="Partager">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-btn" title="Favoris">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="action-btn-group">
+                        <button class="action-btn" title="Chat">
+                            <i class="fas fa-comments"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">1,254</span>
+                            <span class="stat-label">Joueurs en ligne</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">2,453,781</span>
+                            <span class="stat-label">Pixels placés aujourd'hui</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-details">
+                            <span class="stat-value">5:00</span>
+                            <span class="stat-label">Prochain réapprovisionnement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

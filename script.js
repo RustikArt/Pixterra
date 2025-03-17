@@ -108,4 +108,9 @@ document.querySelectorAll('.color-option').forEach(option => {
         colorPicker.value = selectedColor;
         
         // Update active state
-        document.querySelector
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                option.classList.add('active');
+            });
+        });
