@@ -53,11 +53,11 @@
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon"></i>
                 </div>
-                <button class="login-btn glass-btn">
+                <button class="login-btn glass-btn" id="loginBtn">
                     <i class="fas fa-sign-in-alt"></i>
                     <span>Connexion</span>
                 </button>
-                <button class="signup-btn">
+                <button class="signup-btn" id="signupBtn">
                     <i class="fas fa-user-plus"></i>
                     <span>Inscription</span>
                 </button>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <br>
-                <button class="play-btn pulse-animation">
+                <button class="play-btn pulse-animation" id="playBtn">
                     <i class="fas fa-play"></i>
                     <span>Jouer maintenant</span>
                 </button>
@@ -335,7 +335,7 @@
                                 <li><i class="fas fa-check-circle"></i> Planification stratégique</li>
                                 <li><i class="fas fa-check-circle"></i> Support communautaire</li>
                             </ul>
-                            <button class="discord-btn pulse-animation">
+                            <button class="discord-btn pulse-animation" id="discordBtn">
                                 <i class="fab fa-discord"></i>
                                 <span>Rejoindre Discord</span>
                             </button>
@@ -535,5 +535,24 @@
     <script src="script.js"></script>
     <script src="grid.js"></script>
     <script src="navbar.js"></script>
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert('Connexion non disponible pour le moment.');
+        });
+
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            alert('Inscription non disponible pour le moment.');
+        });
+
+        document.getElementById('playBtn').addEventListener('click', function() {
+            alert('Redirection vers le jeu...');
+        });
+
+        document.getElementById('discordBtn').addEventListener('click', function() {
+            window.open('https://discord.com', '_blank');
+        });
+
+        // Ajoutez d'autres scripts pour les interactions nécessaires
+    </script>
 </body>
 </html>
